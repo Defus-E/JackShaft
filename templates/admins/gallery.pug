@@ -1,0 +1,21 @@
+extends ../layout/admin
+block title 
+  | Добавление альбома
+
+block main
+  #board
+    .wrapper
+      .top-page
+        .left 
+          h3 Галерея \ альбомы
+        .right
+          button.uk-button.uk-button-primary(uk-toggle="target: #add-album") Добавить альбом
+      .gallery-list
+        each album in albums
+          .gallery-list-item(style=`background:url('${album.image}')` data-title-ru=album.title.ru data-title-en=album.title.en data-image=album.image data-id=album._id)
+            .title=album.title.ru
+            .control
+              button.uk-button.uk-button-text.edit-album(uk-toggle="target: #edit-album") Изменить
+              a.uk-button.uk-button-text(href="/backend/gallery/"+album._id) Посмотреть
+              button.uk-button.uk-button-text.delete(data-id=album._id data-level="2" data-url="/backend/gallery/delete-album") Удалить
+  include ../inc/a.modals.pug

@@ -1,0 +1,20 @@
+extends ../layout/admin
+block title 
+  | Документы
+
+block main
+  #board
+    .wrapper
+      .top-page
+        .left 
+          h3 Документы
+        .right
+          button.uk-button.uk-button-primary(uk-toggle="target: #document-add") Добавить документ
+      .catalogue-list(category-id=id)
+        each doc in documents
+          .catalogue-list-line(data-title-ru=doc.title.ru data-title-en=doc.title.en data-id=doc._id data-image=doc.image data-document-path=doc.document.path data-document-name=doc.document.name data-document-size=doc.document.size)
+            .title= doc.title.ru
+            .control
+              button.uk-button.uk-button-text.edit-doc(uk-toggle="target: #document-edit") Редактирование
+              button.uk-button.uk-button-text.delete(data-id=doc._id data-level="2" data-categoryid=id data-url="/backend/docs/delete") Удалить
+  include ../inc/a.modals.pug

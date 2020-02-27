@@ -1,0 +1,83 @@
+extends ../layout/admin
+block title 
+  | Настройки
+
+block main
+  #board
+    .wrapper
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      .top-page
+        .left  
+          h3 Настройки
+        .right
+  
+      .form-catalogue
+        ul.uk-subnav(uk-switcher="")
+          li
+            a(href="#") Основные настройки
+          li
+            a(href="#") Настройки админки
+          li
+            a(href="#") Настройки страниц
+
+        ul.uk-switcher.uk-margin
+          form#site(method="POST" action="/backend/settings/site")
+            .uk-margin
+              label.uk-form-label Название сайта
+              .uk-form-controls
+                input.uk-input.clear-input(type="text" name="sitename" placeholder="" required)
+            .uk-margin
+              label.uk-form-label Ключевые слова через запятую
+              .uk-form-controls
+                input.uk-input.clear-input(type="text" name="keywords" placeholder="" required)
+            .uk-margin
+              label.uk-form-label Почта для получения писем
+              .uk-form-controls
+                input.uk-input.clear-input(type="text" name="email" placeholder="" required)
+            .uk-margin
+              button.uk-button.uk-button-primary.auto-form(type="button") Сохранить
+
+          form#password(method="POST" action="/backend/settings/password") 
+            .uk-margin
+              label.uk-form-label Текущий пароль
+              .uk-form-controls
+                input.uk-input.clear-input(type="password" name="oldpassword" placeholder="" required)
+            .uk-margin
+              label.uk-form-label Новый пароль
+              .uk-form-controls
+                input.uk-input.clear-input(type="password" name="password" placeholder="" required)
+            .uk-margin
+              label.uk-form-label Повтор нового пароля
+              .uk-form-controls
+                input.uk-input.clear-input(type="password" name="confirm" placeholder="" required)
+            .uk-margin   
+              button.uk-button.uk-button-primary.auto-form(type="button") Сохранить
+
+          -
+            var items = [
+              { title: 'Главная страница',
+                url: '/main/' },
+              { title: 'Страница электродвигателей',
+                url: '/industry/1/' },
+              { title: 'Страница печей',
+                url: '/industry/2/' },
+              { title: 'Страница промышленного оборудования',
+                url: '/industry/3/' },
+              { title: 'Страница галереи',
+                url: '/gallery/' },
+              { title: 'Страница документов',
+                url: '/docs/' },
+              { title: 'Страница контактов',
+                url: '/contacts/' }
+            ]
+
+          form#pages(method="POST" action="/backend/settings/pages")
+            each item, indx in items
+              .uk-margin
+                input.uk-checkbox(type="checkbox" name=`pages[${indx}]` value=item.url checked=pages.includes(item.url)) 
+                span= item.title
+
+            .uk-margin
+              button.uk-button.uk-button-primary.auto-form(type="button") Сохранить
+

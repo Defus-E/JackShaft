@@ -1,0 +1,251 @@
+#page-edit.uk-modal-full(uk-modal="")
+  .uk-modal-dialog.uk-modal-body
+    button.uk-modal-close-full.uk-close-large(type="button" uk-close="")
+
+    .wrapper
+      h2.uk-modal-title Редактирование страницы |название|
+      .editbody
+        #editor
+          <div class="industry-list"><div class="industry-list__item"> <div class="industry-list__item-left"><h2 class="industry-list__item-left__title">Проектирование и производство электродвигателей любого типа и мощности</h2><div class="industry-list__item-left__body">Благодаря наличию собственных производственных баз и испытательных электротехнических лабораторий, обеспечивается 100%-ый контроль качества всей выпускаемой продукции, начиная со стадии контроля поступления исходных материалов и заканчивая выходными заводскими испытаниями</div><a class="uk-button uk-button-link" href="/industry/1/info/" title="Подробнее">Узнать больше</a></div><div class="industry-list__item-right"><img class="lazy" alt="Проектирование и производство электродвигателей любого типа и мощности" src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@v0.0.1/img/segment1.jpg" style=""></div></div><div class="industry-list__item"> <div class="industry-list__item-left"><h2 class="industry-list__item-left__title">Строительство промышленных печей "под ключ", модернизация и реконструкция нагревательных печей</h2><div class="industry-list__item-left__body">Выполним весь комплекс работ по строительству промышленных нагревательных печей: проектирование, производство, поставка, подготовка документации, монтаж, пусконаладочные работы, ввод в эксплуатацию</div><a class="uk-button uk-button-link" href="/industry/2/info/" title="Подробнее">Узнать больше</a></div><div class="industry-list__item-right"><img class="lazy" alt="Строительство промышленных печей под ключ, модернизация и реконструкция нагревательных печей" src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@v0.0.1/img/segment2.jpg" style=""></div></div><div class="industry-list__item"> <div class="industry-list__item-left"><h2 class="industry-list__item-left__title">Комплексные поставки промышленного оборудования, спецтехники и химических  реагентов</h2><div class="industry-list__item-left__body">Наработанная в течение долгого времени база проверенных производителей, отлаженные схемы поставки, коллектив профессионалов- единомышленников в сфере организации комплексных поставок промышленного оборудования - все это позволяет нам в сжатые сроки выполнить требования даже взыскательных клиентов</div><a class="uk-button uk-button-link" href="/industry/3/info/" title="Подробнее">Узнать больше</a></div><div class="industry-list__item-right"><img class="lazy" alt="Комплексные поставки промышленного оборудования, спецтехники и химических  реагентов" src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@v0.0.1/img/segment3.jpg" style=""></div></div></div>
+      script(src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js")
+      script.
+        CKEDITOR.replace( 'editor', {
+        language: 'ru',
+        uiColor: '#9AB8F3'
+        });
+
+
+#add-album(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    .top-page
+      ul.lang(uk-switcher="connect:#add-album-switcher")
+        li
+          button.uk-button.uk-button-default Русский
+        li
+          button.uk-button.uk-button-default Английский
+    form#add-album-form.form-catalogue(method="POST" action="/backend/gallery/edit-album")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      .form-block
+        ul.top.uk-switcher.uk-margin#add-album-switcher
+          li.uk-margin
+            label.uk-form-label Название альбома
+            .uk-form-controls
+              input.clear-input.uk-input(type="text" name="title.ru" placeholder="" required)
+          li.uk-margin
+            label.uk-form-label Название альбома
+            .uk-form-controls
+              input.clear-input.uk-input(type="text" name="title.en" placeholder="")
+        .center
+          input(class='clear-input' type="file" id="add-album-file" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+          img._image.clear-image(src="/img/nf.jpeg")
+          button.load-img.uk-button.uk-button-default(onclick="document.getElementById('add-album-file').click();" type="button") Загрузить обложку
+      .add
+        button.uk-button.uk-button-primary.auto-form(type="button") Добавить альбом            
+
+#edit-album(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    .top-page
+      ul.lang(uk-switcher="connect:#edit-album-switcher")
+        li
+          button.uk-button.uk-button-default Русский
+        li
+          button.uk-button.uk-button-default Английский
+    form#edit-album-form.form-catalogue(method="POST" action="/backend/gallery/edit-album")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      input(type="text" name="id" style="display:none")
+      .form-block
+        ul.top.uk-switcher.uk-margin#edit-album-switcher
+          li.uk-margin
+            label.uk-form-label Название альбома
+            .uk-form-controls
+              input.uk-input(type="text" name="title.ru" placeholder="" required)
+          li.uk-margin
+            label.uk-form-label Название альбома
+            .uk-form-controls
+              input.uk-input(type="text" name="title.en" placeholder="")
+        .center
+          input(class='clear-input' type="file" id="edit-album-file" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+          img._image
+          button.load-img.uk-button.uk-button-default(onclick="document.getElementById('edit-album-file').click();" type="button") Загрузить обложку
+      .add
+        button.uk-button.uk-button-primary.auto-form(type="button") Сохранить изменения
+
+#add-photo(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    .top-page
+      ul.lang(uk-switcher="connect:#add-photo-switcher")
+        li
+          button.uk-button.uk-button-default Русский
+        li
+          button.uk-button.uk-button-default Английский
+    form#add-photo-form.form-catalogue(method="POST" action="/backend/gallery/edit-photo")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      input(type="text" name="_id" style="display:none" value=id ? id : '')
+      .form-block
+        ul.top.uk-switcher.uk-margin#add-photo-switcher
+          li.uk-margin
+            label.uk-form-label Описание к фото
+            .uk-form-controls
+              input.clear-input.uk-input(type="text" name="description.ru" placeholder="" required)
+          li.uk-margin
+            label.uk-form-label Описание к фото
+            .uk-form-controls
+              input.clear-input.uk-input(type="text" name="description.en" placeholder="")
+        .center
+          input(class='clear-input' type="file" id="add-photo-file" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+          img._image.clear-image(src="/img/nf.jpeg")
+          button.load-img.uk-button.uk-button-default(onclick="document.getElementById('add-photo-file').click();" type="button") Загрузить фото
+      .add
+        button.uk-button.uk-button-primary.auto-form(type="button") Добавить альбом
+
+#edit-photo(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    .top-page
+      ul.lang(uk-switcher="connect:#edit-photo-switcher")
+        li
+          button.uk-button.uk-button-default Русский
+        li
+          button.uk-button.uk-button-default Английский
+    form#edit-photo-form.form-catalogue(method="POST" action="/backend/gallery/edit-photo")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      input(type="text" name="_id" style="display:none" value=id ? id : '')
+      input(type="text" name="id" style="display:none")
+      .form-block
+        ul.top.uk-switcher.uk-margin#edit-photo-switcher
+          li.uk-margin
+            label.uk-form-label Описание к фото
+            .uk-form-controls
+              input.uk-input(type="text" name="description.ru" placeholder="" required)
+          li.uk-margin
+            label.uk-form-label Описание к фото
+            .uk-form-controls
+              input.uk-input(type="text" name="description.en" placeholder="")
+        .center
+          input(class='clear-input' type="file" id="edit-photo-file" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+          img._image
+          button.load-img.uk-button.uk-button-default(onclick="document.getElementById('edit-photo-file').click();" type="button") Загрузить обложку
+      .add
+        button.uk-button.uk-button-primary.auto-form(type="button") Сохранить изменения
+
+#document-add(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    .top-page
+      ul.lang(uk-switcher="connect:#document-switcher")
+        li
+          button.uk-button.uk-button-default Русский
+        li
+          button.uk-button.uk-button-default Английский
+    form#add-document-form.form-catalogue(method="POST" action="/backend/docs/edit")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      input(type="text" name="categoryid" style="display: none" required)
+      .uk-margin
+        label.uk-form-label Название документа ( заголовок )
+        .uk-form-controls
+          input.uk-input.clear-input(type="text" name="title.ru" placeholder="" required)
+      .uk-margin
+        label.uk-form-label Обложка
+        .uk-form-controls(style="margin-top: 20px;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-ms-flex-line-pack: center;align-content: center;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;")
+          input.clear-input(type="file" id="cover-add" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp" required)
+          img._image.clear-image(src="/img/nf.jpeg" style="height: 355px")
+          button.load-img.uk-button.uk-button-default(onclick="document.getElementById('cover-add').click();" type="button") Загрузить изображение
+      .uk-margin
+        label.uk-form-label Документ
+        .uk-form-controls
+          input.clear-input(type="file" id="document-add-file" data-act="document" style="display: none;" required)
+          button.uk-button.uk-button-default(onclick="document.getElementById('document-add-file').click();" type="button") Загрузить документ
+          .dz-preview.dz-file-preview.doc#add(style="display:none")
+            .dz-image
+              img(data-dz-thumbnail style="height: 120px" onerror="this.style.display = 'none';")
+            .dz-details
+              .dz-size
+                span(data-dz-size)
+                  stront
+              .dz-filename
+                span#namesp(data-dz-name)
+            .dz-progress
+              span.dz-upload(data-dz-uploadprogress)
+            a.dz-remove(href="javascript:undefined;" class="delete-image" data-dz-remove) ×
+      .uk-margin.add
+        button.uk-button.uk-button-primary.auto-form(type="button") Сохранить изменения
+
+#document-edit(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    .top-page
+      ul.lang(uk-switcher="connect:#document-switcher")
+        li
+          button.uk-button.uk-button-default Русский
+        li
+          button.uk-button.uk-button-default Английский
+    form#edit-document-form.form-catalogue(method="POST" action="/backend/docs/edit")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      input(type="text" name="id" style="display: none" required)
+      input(type="text" name="categoryid" style="display: none" required)
+      .uk-margin
+        label.uk-form-label Название документа ( заголовок )
+        .uk-form-controls
+          input.uk-input(type="text" name="title.ru" placeholder="" required)
+      .uk-margin
+        label.uk-form-label Обложка
+        .uk-form-controls(style="margin-top: 20px;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;-ms-flex-line-pack: center;align-content: center;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;")
+          input.clear-input(type="file" id="cover-edit" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+          img._image(src="/img/nf.jpeg" style="height: 360px")
+          button.load-img.uk-button.uk-button-default(onclick="document.getElementById('cover-edit').click();" type="button") Загрузить изображение
+      .uk-margin
+        label.uk-form-label Документ
+        .uk-form-controls
+          input.clear-input(type="file" id="document-edit-file" data-act="document" style="display: none;")
+          button.uk-button.uk-button-default(onclick="document.getElementById('document-edit-file').click();" type="button") Загрузить документ
+          .dz-preview.dz-file-preview.doc#edit
+            .dz-image
+              img(data-dz-thumbnail onerror="this.style.display='none'" style="height: 120px")
+            .dz-details
+              .dz-size
+                span(data-dz-size)
+                  stront
+              .dz-filename
+                span#namesp(data-dz-name)
+            .dz-progress
+              span.dz-upload(data-dz-uploadprogress)
+            a.dz-remove(href="javascript:undefined;" class="delete-image" data-dz-remove) ×
+      .uk-margin.add
+        button.uk-button.uk-button-primary.auto-form(type="button") Сохранить изменения
+
+#cat-add(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    form#add-cat.form-catalogue(method="POST" action="/backend/docs/category/edit")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      .uk-margin
+        label.uk-form-label Название категории
+        .uk-form-controls
+          input.uk-input.clear-input(type="text" name="categorytitle.ru" placeholder="" autocomplete="off" required)
+      .uk-margin.add
+        button.uk-button.uk-button-primary.auto-form(type="button") Добавить
+
+#cat-edit(uk-modal="")
+  .uk-modal-dialog
+    button.uk-modal-close(type="button" uk-close="")
+    form#edit-cat.form-catalogue(method="POST" action="/backend/docs/category/edit")
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      input(type="text" name="id" style="display: none" required)
+      .uk-margin
+        label.uk-form-label Название категории
+        .uk-form-controls
+          input.uk-input(type="text" name="categorytitle.ru" placeholder="" autocomplete="off" required)          
+      .uk-margin.add
+        button.uk-button.uk-button-primary.auto-form(type="button") Сохранить изменения
+

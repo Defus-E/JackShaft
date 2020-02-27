@@ -1,0 +1,25 @@
+extends ../layout/admin
+block title 
+  | Каталог | Панель управления
+
+block main
+  #board
+    .wrapper
+      .top-page
+        .right
+          a.uk-button.uk-button-primary(href="/backend/catalogue/edit/") Добавить позицию
+      -
+        var types = [
+          'Асинхронные двигатели низкого напряжения', 
+          'Асинхронные двигатели высокого напряжения', 
+          'Синхронные двигатели высокого напряжения', 
+          'Электродвигатели постоянного тока'
+        ];
+      each item in items
+        .catalogue-list
+          .catalogue-list-line
+            .title= item.name.ru
+            .category= types[item.type]
+            .control
+              a.uk-button.uk-button-text(href="/backend/catalogue/edit/" + item._id) Изменить
+              button.uk-button.uk-button-text.delete(data-id=item._id data-level="3" data-url="/backend/catalogue/delete") Удалить

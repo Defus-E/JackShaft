@@ -1,0 +1,51 @@
+include ../mixins/_sprite
+-var version = '0.1.54'
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    include ../inc/meta
+    title
+      =sitename + ' | '
+      block title
+    
+    link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/uikit.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href="https://cdn.jsdelivr.net/combine/npm/cdncw-jackshaft@" + version + "/css/app.min.css,npm/cdncw-jackshaft@" + version + "/css/main.min.css,npm/cdncw-jackshaft@" + version + "/css/style.min.css,npm/cdncw-jackshaft@" + version + "/css/style.min.css,npm/cdncw-jackshaft@" + version + "/css/slick.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+    block css
+    noscript
+      link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/uikit.min.css")
+      link(rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/cdncw-jackshaft@" + version + "/css/app.min.css,npm/cdncw-jackshaft@" + version + "/css/main.min.css,npm/cdncw-jackshaft@" + version + "/css/style.min.css,npm/cdncw-jackshaft@" + version + "/css/style.min.css,npm/cdncw-jackshaft@" + version + "/css/slick.min.css")
+      block noscript
+
+  body
+    script.
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+      ym(56979991, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        defer:true
+      });
+    noscript
+      div
+        img(src="https://mc.yandex.ru/watch/56979991", style="position:absolute; left:-9999px;" alt="")
+    include ../components/header
+    block main
+    include ../components/footer
+    
+    block javascript
+    script(src="https://cdn.jsdelivr.net/combine/npm/cdncw-jackshaft@" + version + "/js/jquery-3.4.1.min.js")  
+    script(src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/js/cssrelpreload.js")
+    script(src="https://cdn.jsdelivr.net/combine/npm/cdncw-jackshaft@" + version + "/js/jquery.lazy.min.js,npm/cdncw-jackshaft@" + version + "/js/uikit.min.js,npm/cdncw-jackshaft@" + version + "/js/slick.min.js")
+    script(defer src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/js/dropzone.min.js")
+    script(defer src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/js/upload.min.js")
+    script(defer src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/js/app.js")
+    script.
+      "use strict";!async function(){var e=await fetch("https://worldtimeapi.org/api/timezone/Europe/Moscow"),t=await e.json(),n=new Date(t.datetime),o=n.getUTCHours() + 3,i=n.getMinutes(),a=n.getSeconds(),r=o+5;function s(){++a>=60&&(a=0,i++),i>=60&&(i=0,o++,r++),o>=24&&(hours=0),r>=24&&(r=0);var e=i<10?"0"+i:i,t=o<10?"0"+o:o,n=r<10?"0"+r:r;document.getElementById("Moscow").innerText=t+":"+e,document.getElementById("Beijing").innerText=n+":"+e}s(),setInterval(s,1e3)}();

@@ -1,0 +1,82 @@
+extends layout/index
+include mixins/contact
+block title
+  =item.name['ru']
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css")
+
+block main
+  #body
+    #mobilenavcatalogue
+      a(href="/industry/1/catalogue/" + item.previous)
+        .i
+      a(href="/industry/1/catalogue/") 
+        .i
+      a(href="/industry/1/catalogue/" + item.next) 
+        .i
+    #aside(data-uk-sticky="bottom: #body; offset: 100" style="margin-top:50px")
+      a(href="/industry/1/catalogue/" + item.previous) Предыдущий двигатель
+      a(href="/industry/1/catalogue/") Вернуться в каталог
+      a(href="/industry/1/catalogue/" + item.next) Следующий двигатель
+    #info
+      .title-block
+        .wrapper
+          h2= item.name['ru']
+
+      -
+        var props = [
+          { title: { ru: 'Высота оси вращения', en: 'Rotation axis height' }, name: 'rotation_height' },
+          { title: { ru: 'Мощность', en: 'Power' }, name: 'power' },
+          { title: { ru: 'Мощность и режим работы', en: 'Power and mode' }, name: 'power_and_mode' }, 
+          { title: { ru: 'Число полюсов', en: 'Number of poles' }, name: 'poles' },
+          { title: { ru: 'Напряжение', en: 'Voltage' }, name: 'voltage' },
+          { title: { ru: 'Номинальная частота', en: 'Rated frequency' }, name: 'rated_frequency' },
+          { title: { ru: 'Диапазон регулирования частоты', en: 'Frequency control range' }, name: 'frequency_control_range' },
+          { title: { ru: 'Степень защиты', en: 'Degree of protection' }, name: 'degree_of_protection' },
+          { title: { ru: 'Способ монтажа', en: 'Mounting method' }, name: 'mounting_method' },
+          { title: { ru: 'Способ охлаждения', en: 'Cooling method' }, name: 'cooling_method' }
+        ];
+
+      .wrapper.catalogue-body
+        .left
+          img(src=item.image || item.image == "" ? _host + item.image : '/img/nf.jpeg' alt="Image not found")
+        .right
+          ul.info
+            li
+              .title Категория:
+              .value= item.category.ru
+              
+            each prop in props
+              if item[prop.name] && item[prop.name].trim() != ''
+                li
+                  .title= prop.title['ru'] + ':'
+                  .value= item[prop.name]
+
+            if item.possible_options_for_heat_resistance.ru || item.possible_options_for_heat_resistance.en
+              -var ru = 'Возможные варианты термостойкости'
+              -var en = 'Possible options for heat resistance'
+              li
+                .title= ru + ':'
+                .value= item.possible_options_for_heat_resistance['ru']
+
+          if item.description
+            .description!= item.description['ru']
+
+    #info-sub
+      if item.texttables
+        .title-block
+          .wrapper
+            h2= item.texttables['ru']
+      .wrapper.catalogue-body.tables(uk-lightbox)
+        if item.tables
+          each table in item.tables
+            a.table(href=table.path)
+              img.lazy(data-src=table.path alt="Table")
+      .title-block
+        .wrapper
+          h3 Оставьте заявку, и наш специалист свяжется с Вами в ближайшее рабочее время.
+      .wrapper 
+        +contact('0', ['h-radio1', 'h-radio2', 'h-radio3', 'h-radio4', 'h-radio5', 'h-radio6'], 'mainDZ')

@@ -1,0 +1,97 @@
+extends layout/index
+block title 
+  | Электродвигатели | Каталог
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css")
+
+block main
+  #hero
+      .hero-slider
+        .slide
+          img(data-lazy="/img/y9P4WuTujzc.jpg" alt="")
+          .info-block
+            .title-screen Онлайн каталог электродвигателей компании JackShaft
+  #body
+    #aside(uk-sticky="bottom: #body; offset: 100")
+      a(href="#cat0" uk-scroll="offset:120") Асинхронные двигатели низкого напряжения
+      a(href="#cat1" uk-scroll="offset:120") Асинхронные двигатели высокого напряжения
+      a(href="#cat2" uk-scroll="offset:120") Синхронные двигатели высокого напряжения
+      a(href="#cat3" uk-scroll="offset:120") Электродвигатели постоянного тока
+
+    #info
+      .title-block
+        .wrapper
+          h2 ДОБРО ПОЖАЛОВАТЬ!
+      .wrapper 
+        .description
+          p Приветствуем Вас на страницах нашего онлайн каталога энергоэффективных электродвигателей компании JackShaft.
+          p Современный рынок производителей и поставщиков электродвигателей предлагает множество вариантов, из-за чего выбор электродвигателя с оптимальным соотношением цена- качество представляется довольно непростой задачей. Специалисты компании JackShaft с радостью помогут Вам в правильном выборе и приобретении электродвигателя любой мощности и типа путем консультации по телефону, переписки по электронной почте, в офисе при личной встрече. Также приглашаем Вас посетить наши заводы в Китае, где Вы сможете своими глазами увидеть весь процесс производства электродвигателей, убедиться в их высоком качестве. 
+          p Ниже представлена линейка наиболее часто применяемых электродвигателей, при возникновении затруднений при правильном подборе типа электродвигателя, свяжитесь с нами, мы поможем Вам подобрать электродвигатель под Ваши требования. Также мы можем выполнить изготовление электродвигателя по индивидуальным требованиям. 
+    -
+      var types = [
+        'Асинхронные двигатели низкого напряжения', 
+        'Асинхронные двигатели высокого напряжения'
+      ];
+
+    each type, indx in types
+      .catalogue-section(id=`cat${indx}`)      
+        .title-block
+          .wrapper
+            h2= type
+
+        .wrapper 
+          .catalogue
+            each item in items
+              if indx == item._id
+                each icat in item.doc
+                  .catalogue-item
+                    .catalogue-item__inner
+                      img.lazy.cover(data-src=icat.image || item.image == "" ? _host + icat.image : '/img/nf.jpeg' alt="Image not found")
+                      .text= icat.name.ru
+                      a.more.uk-button.uk-button-primary(href=`/industry/1/catalogue/${icat._id}`) Подробнее
+                -break;
+
+    .catalogue-section(id=`cat2`)      
+      .title-block
+        .wrapper
+          h2 Синхронные двигатели высокого напряжения
+
+      .wrapper 
+        .catalogue
+          .catalogue-item
+            .catalogue-item__inner
+              img.lazy.cover(data-src="/img/4_1.png" alt="text")
+              .text Синхронные трехфазные электродвигатели горизонтального исполнения серии JS-AM
+              a.more.uk-button.uk-button-primary(href="/industry/1/catalogue/1") Подробнее
+          .catalogue-item
+            .catalogue-item__inner
+              img.lazy.cover(data-src="/img/4_2.png" alt="text")
+              .text Синхронные трехфазные электродвигатели вертикального исполнения серии JS-VAM
+              a.more.uk-button.uk-button-primary(href="/industry/1/catalogue/1") Подробнее
+    
+    .catalogue-section(id=`cat3`)      
+      .title-block
+        .wrapper
+          h2 Электродвигатели постоянного тока
+
+      .wrapper 
+        .catalogue
+          .catalogue-item
+            .catalogue-item__inner
+              img.lazy.cover(data-src="/img/5_1.png" alt="text")
+              .text Электродвигатели постоянного тока серии JS-DC
+              a.more.uk-button.uk-button-primary(href="/industry/1/catalogue/2") Подробнее
+          .catalogue-item
+            .catalogue-item__inner
+              img.lazy.cover(data-src="/img/5_2.png" alt="text")
+              .text Электродвигатели постоянного тока для нефтяных насосов серии JS-DC-SP(oil pump)
+              a.more.uk-button.uk-button-primary(href="/industry/1/catalogue/2") Подробнее
+          .catalogue-item
+            .catalogue-item__inner
+              img.lazy.cover(data-src="/img/5_3.png" alt="text")
+              .text Электродвигатели на постоянных магнитах
+              a.more.uk-button.uk-button-primary(href="/industry/1/catalogue/2") Подробнее
+          

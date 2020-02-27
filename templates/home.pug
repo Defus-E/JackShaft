@@ -1,0 +1,20 @@
+extends layout/index
+include mixins/contact
+include mixins/slider
+
+block title 
+	| Главная
+
+block main
+	#hero
+		+slider(slides)
+		
+	include about
+
+	#contact
+		.title-block
+			.wrapper
+				h2 Начнём сотрудничество!
+				h4.sub Пожалуйста, заполните форму, наш менеджер свяжется с Вами
+		+contact('0', ['h-radio1', 'h-radio2', 'h-radio3', 'h-radio4', 'h-radio5', 'h-radio6'], 'mainDZ')
+	//- #map

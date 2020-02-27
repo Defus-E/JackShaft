@@ -1,0 +1,45 @@
+extends layout/index
+include mixins/contact
+
+block title 
+  | Электродвигатели постоянного тока
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css")
+
+block main
+  #hero
+      .hero-slider
+        .slide
+          img(data-lazy="/img/5.1. banner.jpg" alt="")
+          .info-block
+              .title-screen Компания JackShaft изготовит электродвигатели постоянного тока под вашу задачу, c учетом всех технических характеристик, условий и особенностей работы
+  #info
+    .title-block
+      .wrapper
+        h2 Электродвигатели постоянного тока
+    .wrapper.catalogue-body
+      .description 
+        p Электродвигатель постоянного тока (ДПТ) - электрическая машина постоянного тока, преобразующая электрическую энергию постоянного тока в механическую энергию. Электродвигатели постоянного тока применяют в тех электроприводах, где требуется большой диапазон регулирования скорости, большая точность поддержания скорости вращения привода, регулирования скорости вверх от номинальной.
+        p
+          strong Достоинства ДПТ:
+          ul.list
+            li простота устройства и управления;
+            li практически линейные механическая и регулировочная характеристики двигателя;
+            li легкость регулирования частоты вращения;
+            li отличные пусковые характеристики большой пусковой момент;
+            li компактность конструкции;
+            li возможность использования их как в двигательном, так и в генераторном режимах.
+        p
+          strong Недостатки :
+          ul.list
+            li необходимость использования выпрямительных устройств;
+            li необходимость профилактического обслуживания коллекторно-щёточных узлов.
+
+  #info-sub
+    .title-block
+      .wrapper
+        h3 Оставьте заявку, и наш специалист свяжется с Вами в ближайшее рабочее время. 
+      .wrapper
+        +contact('0', ['h-radio1', 'h-radio2', 'h-radio3', 'h-radio4', 'h-radio5', 'h-radio6'], 'mainDZ')

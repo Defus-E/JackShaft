@@ -1,0 +1,108 @@
+.header
+  .header-top
+    .wrapper
+      .logo(style="background-image: url('/img/logo.png')")
+      .info
+        .adress
+          +icon('globe')
+          .text
+            span  Адрес: 
+            | Beijing, Chaoyang, Side Road of E. 4th Ring Road Middle, Block D, Ocean International Center, office 1501.
+        .tell
+          +icon('phone')
+          .text
+            span Тел./факс (Пекин):
+            a(href="tel:+86-10-596-487-68" type="tel") +86-10-596-487-68
+            span.sub (Многоканальный)
+        .email
+          +icon('mail')
+          .text
+            a(href="mailto:info@jackshaft.ru" type="email") info@jackshaft.ru
+        .time
+          +icon('clock')
+          .times
+            div 
+              | Москва 
+              span#Moscow
+            div 
+              | Пекин
+              span#Beijing
+  .header-bottom(uk-sticky)
+    .wrapper
+      .nav
+        -
+          var regex = /\/industry\/{1,3}\/?/;
+          var navs = [
+            { title: 'Главная',
+              url: '/main/' },
+            { title: 'Электродвигатели',
+              url: '/industry/1/',
+              modal: [{
+                title: 'Информация',
+                url: '/industry/1/info/'
+              }, {
+                title: 'Онлайн каталог',
+                url: '/industry/1/catalogue/'
+              }]},
+            { title: 'Печи',
+              url: '/industry/2/',
+              modal: [{
+                title: 'Шахтная печь',
+                url: '/industry/2/catalogue/1/'
+              }, {
+                title: 'Туннельная печь',
+                url: '/industry/2/catalogue/2/'
+              }, {
+                title: 'Кольцевая печь',
+                url: '/industry/2/catalogue/3/'
+              }]},
+            { title: 'Промышленное оборудование',
+              url: '/industry/3/' },
+            { title: 'Галерея',
+              url: '/gallery/' },
+            { title: 'Документы',
+              url: '/docs/' },
+            { title: 'Контакты',
+              url: '/contacts/' }
+          ];
+
+        ul.desktop
+          each item in navs
+            if pages.includes(item.url)
+              li
+                a(href=item.url == '/main/' ? '/' : regex.test(item.url) ? item.url + 'info/' : item.url)=item.title
+                if (item.modal)  
+                  div(uk-dropdown="pos:bottom-center" style="display: none")
+                    ul
+                      each elem in item.modal
+                        li
+                          a(href=elem.url)=elem.title
+          //- li.lang
+          //-   a(href="#") RU
+          //-   div(uk-dropdown="pos:bottom-center")
+          //-     ul.langs
+          //-       li
+          //-         a(href="#") RU
+          //-       li
+          //-         a(href="#") EN
+        ul.mobile-nav
+          li.logo
+            a(href="/") Jackshaft 
+          li
+            a(href="#" uk-toggle="#mobile") 
+              +icon("menu")
+#mobile.uk-modal-full(uk-modal="" style="display: none")
+  .uk-modal-dialog.uk-modal-body
+    //- button.uk-modal-close-full.uk-close-large(type="button" uk-close="")
+    .wrapper
+      ul
+        each item in navs
+          if pages.includes(item.url)
+            li
+              a(href=item.url == '/main/' ? '/' : regex.test(item.url) ? item.url + 'info/' : item.url)=item.title
+              if (item.modal)  
+                div(uk-dropdown="pos:bottom-center" style="display: none")
+                  ul
+                    each elem in item.modal
+                      li
+                        a(href=elem.url)=elem.title

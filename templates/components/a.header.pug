@@ -1,0 +1,20 @@
+.header
+  .header-bottom
+    .wrapper
+      .nav
+        ul.left
+          li
+            a(href="/backend/home/") Главная
+          li
+            a(href="/backend/catalogue/") Каталог
+          li
+            a(href="/backend/gallery/") Галерея
+          li
+            a(href="/backend/sliders/") Слайдеры
+          li
+            a(href="/backend/docs/") Документы
+          li
+            a(href="/backend/settings/") Настройки
+        ul.right  
+          li
+            a(href="" onclick="$(document.body).append('<form id=logout method=POST action=/backend/logout>');$('#logout').submit(); return false;" type="submit") Выход

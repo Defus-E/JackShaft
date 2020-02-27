@@ -1,0 +1,31 @@
+{
+  "server": {
+    "host": "http://77.240.101.171",
+    "port": 8085
+  },
+  "mongoose": {
+    "uri": "mongodb://localhost/jackshaft",
+    "options": {
+      "useUnifiedTopology": true,
+      "useNewUrlParser": true,
+      "useFindAndModify": false,
+      "useCreateIndex": true,
+      "keepAlive": 1
+    }
+  },
+  "session": {
+    "secret": "^%32He1dc5*)0z@^",
+    "name": "firesid"
+  },
+  "mailer": {
+    "host": "smtp.yandex.ru",
+    "login": "middleman-jackshaft@creawave.studio",
+    "password": "zqegrsipwukmggam",
+    "owner": "teo@creawave.studio"
+  },
+  "site": {
+    "sitename": "JackShaft",
+    "keywords": "none",
+    "pages": "[\"/main/\",\"/industry/1/\",\"/industry/2/\",\"/industry/3/\",\"/gallery/\",\"/docs/\",\"/contacts/\"]"
+  }
+}

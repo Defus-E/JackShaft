@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Авторизация
+
+  body
+    script(src="/js/jquery-3.4.1.min.js")
+    script.
+      "use strict";
+
+      var name, password, confirm;
+      requireData();
+
+      function requireData() {
+        var login = prompt('Введите имя администратора:');
+        var password = prompt('Введите пароль администратора:');
+        sendData('/backend/login', {
+          login: login,
+          password: password
+        });
+      };
+
+      function sendData(url, data) {
+        if (!data.login || data.login.trim() == '') {
+          alert('Введите логин.');
+          requireData();
+          return;
+        }
+
+        $.post(url, data).done(function () {
+          window.location.href = '/backend/home/';
+        }).fail(function (jqXHR) {
+          var error = JSON.parse(jqXHR.responseText);
+          alert(error.reason);
+          requireData();
+        });
+      };

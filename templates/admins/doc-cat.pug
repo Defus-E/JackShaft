@@ -1,0 +1,21 @@
+extends ../layout/admin
+block title
+  | Документы - категории
+
+block main
+  #board
+    .wrapper
+      .top-page
+        .left 
+          h3 Документы - категории
+        .right
+          button.uk-button.uk-button-primary(uk-toggle="target: #cat-add") Добавить категорию
+      .catalogue-list
+        each category in documents
+          .catalogue-list-line(data-title-ru=category.categorytitle.ru data-title-en=category.categorytitle.en data-id=category._id)
+            .title= category.categorytitle.ru
+            .control
+              a.uk-button.uk-button-text(href="/backend/docs/" + category._id) Перейти к документам
+              button.uk-button.uk-button-text.edit-cat-doc(uk-toggle="target: #cat-edit") Редактирование
+              button.uk-button.uk-button-text.delete(data-id=category._id data-level="2" data-url="/backend/docs/category/delete") Удалить
+  include ../inc/a.modals.pug

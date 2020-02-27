@@ -1,0 +1,19 @@
+extends layout/index
+block title 
+  | Галлерея / Товар
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css")
+
+block main
+  section#gallery
+    .title-block
+      .wrapper
+        h2=title.ru
+    .wrapper
+      .gallery-albums(uk-lightbox)
+        each photo in photos
+          a.album(href=photo.photo style=`background: url('${photo.photo}')`)
+            .title=photo.description.ru

@@ -1,0 +1,42 @@
+extends ../layout/admin
+block title 
+  | Главная | Панель управления
+
+block main
+  #board
+    .wrapper
+      .title Быстрая навигация
+      ul.fast
+        li
+          a(href="/") Главная
+        li
+          a(href="/industry/1/info/") Электродвигатели
+        li
+          a(href="/industry/2/info/") Печи
+        li
+          a(href="/industry/3/info/") Промышленное оборудование
+        li
+          a(href="/gallery/") Галерея
+        li
+          a(href="/contacts/") Контакты
+      .title Статистика
+      ul.statistic
+        li
+          span Всего посетителей
+          .value#visits
+        li
+          span Уникальных посетителей
+          .value#users
+  script.
+    fetch(
+      'https://api-metrika.yandex.net/stat/v1/data?metrics=ym:s:visits,ym:s:users&id=56979991', {
+      headers: { "Authorization": "OAuth AgAEA7qjI3BGAAYRwCiQ-Z9XaE6bit6BaVibQeg" } 
+    })
+    .then(r => r.json())
+    .then(metrikaApiJSON => {
+      var visits = metrikaApiJSON.totals[0];
+      var users = metrikaApiJSON.totals[1];
+
+      document.getElementById('visits').innerText = visits;
+      document.getElementById('users').innerText = users;
+    });

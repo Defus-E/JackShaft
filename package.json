@@ -1,0 +1,52 @@
+{
+	"name": "jackshaft",
+	"version": "0.0.1",
+	"description": "",
+	"main": "app.ts",
+	"scripts": {
+		"start:dev": "cross-env NODE_ENV=development nodemon --exec ts-node app.ts",
+		"start:prod": "cross-env NODE_ENV=production ts-node app.ts",
+		"pm2": "pm2 start pm2.json && pm2 save --force",
+		"clean": "pm2 flush JackShaft",
+		"logs": "pm2 logs JackShaft",
+		"i": "npm install && npm audit fix"
+	},
+	"author": "Creawave Studio",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^12.0.0",
+		"nodemon": "^1.19.0",
+		"ts-node": "^8.1.0",
+		"tslint": "^5.16.0",
+		"typescript": "^3.4.5"
+	},
+	"dependencies": {
+		"@types/body-parser": "^1.17.0",
+		"@types/connect-mongo": "0.0.41",
+		"@types/cookie-parser": "^1.4.1",
+		"@types/express": "^4.16.1",
+		"@types/express-session": "^1.15.12",
+		"@types/mongodb": "^3.1.26",
+		"@types/mongoose": "^5.5.0",
+		"@types/morgan": "^1.7.35",
+		"@types/nconf": "^0.10.0",
+		"@types/serve-favicon": "^2.2.31",
+		"body-parser": "^1.19.0",
+		"connect-mongo": "^2.0.3",
+		"cookie-parser": "^1.4.4",
+		"express": "^4.16.4",
+		"express-error-handler": "^1.1.0",
+		"express-session": "^1.16.1",
+		"formidable": "^1.2.1",
+		"helmet": "^3.21.2",
+		"mongodb": "^3.2.4",
+		"mongoose": "^5.5.6",
+		"morgan": "^1.9.1",
+		"nconf": "^0.10.0",
+		"nodemailer": "^6.4.2",
+		"pug": "^2.0.4",
+		"rimraf": "^3.0.0",
+		"serve-favicon": "^2.5.0",
+		"yametrika": "^2.2.0"
+	}
+}

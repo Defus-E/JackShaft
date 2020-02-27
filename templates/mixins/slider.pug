@@ -1,0 +1,9 @@
+mixin slider(slides)
+  .hero-slider
+    each slide in slides
+      .slide
+        img(src=slide.image alt="Image slide")
+        .info-block
+          .title-screen= slide.title
+          if typeof slide.link === 'string' && slide.link != ''
+           a(href=slide.link title="Узнать больше" tabindex="0") Узнать больше

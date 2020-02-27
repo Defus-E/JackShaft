@@ -1,0 +1,28 @@
+extends ../layout/admin
+block title
+  | Страницы
+
+block main
+  section#board
+    .wrapper
+      .top-page
+        .left 
+          h3 Страницы
+        .right
+          //- button.uk-button.uk-button-primary(uk-toggle="target: #document-add") Добавить документ
+      .catalogue-list
+        .catalogue-list-line
+          .title Название страницы
+          .control
+            button.uk-button.uk-button-text(uk-toggle="target: #page-edit") Редактирование
+            button.uk-button.uk-button-text Удалить
+        .catalogue-list-line
+          .title Название страницы
+          .control
+            button.uk-button.uk-button-text(uk-toggle="target: #page-edit") Редактирование
+            button.uk-button.uk-button-text Удалить
+        .catalogue-list-line
+          .title Название страницы
+          .control
+            button.uk-button.uk-button-text(uk-toggle="target: #page-edit") Редактирование
+            button.uk-button.uk-button-text Удалить

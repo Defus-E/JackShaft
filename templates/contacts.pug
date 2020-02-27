@@ -1,0 +1,25 @@
+extends layout/index
+include mixins/contact
+
+block title 
+  | Контакты
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css")
+
+block main
+  #page.noslider
+    .title-block
+      .wrapper
+        h2 Контакты
+    .wrapper
+      h3 Jackshaft (Beijing) Technology Co., Ltd
+
+      h3 Адрес: 
+      p 北京 朝阳区 东四环中路远洋国际中心D座1501.
+      p Beijing, Chaoyang, Side Road of E. 4th Ring Road Middle, Block D, Ocean International Center, office 1501.
+      h3 Отдел продаж:
+      p Тел./факс (Пекин): +86-10-596-487-68 (Многоканальный)
+      +contact('0', ['h-radio1', 'h-radio2', 'h-radio3', 'h-radio4', 'h-radio5', 'h-radio6'], 'mainDZ')

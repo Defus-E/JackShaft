@@ -1,0 +1,51 @@
+.footer
+  .footer-top
+    .wrapper
+      .footer-top__block
+        .logo.lazy(data-src="/img/logo.png")
+        .copyright Jackshaft (Beijing) Technology Co.Ltd © 2020
+      .footer-top__block 
+        .title Навигация 
+        ul.navi
+
+          li
+            a(href="/") Главная
+          li
+            a(href="/industry/1/info") Электродвигатели
+          li
+            a(href="/industry/2/info") Печи
+          li
+            a(href="/industry/3/info") Промышленное оборудование
+          li
+            a(href="/gallery/") Галерея
+          li
+            a(href="/contacts") Контакты
+      .footer-top__block
+        .title Контактная информация 
+        .info
+          
+          .adress
+            +icon('globe')
+            .text
+              span  Адрес: 
+              | Beijing, Chaoyang, Side Road of E. 4th Ring Road Middle, Block D, Ocean International Center, office 1501.
+          .tell
+            +icon('phone')
+            .text
+              span Тел./факс (Пекин):
+              | +86-10-596-487-68 (Многоканальный)
+          //- .email
+          //-   +icon('mail')
+          //-   .text
+          //-     a(href="mailto:info@jackshaft.ru" type="email") info@jackshaft.ru    
+  .footer-bottom
+    .wrapper 
+      .footer-bottom__left
+        .copyright
+          | Jackshaft (Beijing) Technology Co.Ltd
+      .footer-bottom__right
+        .bycreawavestudio
+          a(href="http://creawave.studio" target="_blank" rel="noreferrer") Разработано в creawave
+
+include ../inc/svg
+block modals

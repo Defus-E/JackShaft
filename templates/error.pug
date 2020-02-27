@@ -1,0 +1,16 @@
+extends layout/index
+
+block title 
+  | Ошибка
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css")
+
+block main
+  #page.error-page
+    .wrapper
+      h3= error.status
+      h2= error.reason
+      a.uk-button.uk-button-primary(href="/") Перейти на главную

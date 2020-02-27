@@ -1,0 +1,111 @@
+extends layout/index
+include mixins/contact
+include mixins/slider
+
+block modals
+  include inc/modals
+block title 
+  | Электродвигатели | Информация
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css")
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css")
+
+block main
+  
+    #hero
+      +slider(slides)
+    #body
+      #aside(uk-sticky="bottom: #body; offset: 100" style="margin-top:50px")
+          a(href="/industry/1/catalogue/") Перейти к каталогу
+          a(href="/contacts/") Связаться с нами  
+      #page
+        .wrapper
+          .blocks-list
+            .block
+              h3 СТАНДАРТЫ NEMA, DIN, IEC
+              .description Компания JackShaft выпускает электродвигатели в соответствии с различными международными стандартами
+              button.uk-button.uk-button-primary(uk-toggle="target: #info1") Подробнее
+            .block
+              h3 ГОСТ
+              .description Компания JackShaft разработала линейку электродвигателей JS-AM- LV-LT- E2, соответствующих ГОСТ и российским климатическим условиям
+              button.uk-button.uk-button-primary(uk-toggle="target: #info2") Подробнее
+            .block
+              h3 ОТРАСЛЕВЫЕ РЕШЕНИЯ
+              .description Помимо общепромышленных электродвигателей, компания JackShaft выпускает двигатели специального применения
+              button.uk-button.uk-button-primary(uk-toggle="target: #info3") Подробнее
+            .block
+              h3 ИНДИВИДУАЛЬНЫЙ ЗАКАЗ
+              .description При наличии особых требований, компания JackShaft сможет изготовить электродвигатель под заказ
+              button.uk-button.uk-button-primary(uk-toggle="target: #info4") Подробнее
+        .title-block
+          .wrapper
+            h2 Информация       
+        .wrapper.text 
+          p Компания JackShaft (Beijing) Technology Co.,Ltd объединила под своим началом всю производственную цепочку производства электрических машин, осуществляет строгий контроль качества на всех стадиях изготовления продукции, начиная с контроля поступающих материалов и заканчивая заводскими испытаниями продукции перед отгрузкой покупателю. Благодаря этому обеспечивается безупречное качество всей выпускаемой продукции
+          p
+            center
+              img.diagramm.lazy(data-src="/img/diagramm1.png" alt="изображение")
+          p Для выполнения изоляции используется технология VPI (вакуумной пропитки под давлением), благодаря чему повышается изоляционная прочность двигателей и продлевается их срок службы. Компания Jackshaft (Beijing) Technology Co.,Ltd имеет на территории Китая два типа испытательных центров: для двигателей низкого и высокого напряжения. Диапазон мощности испытуемых низковольтных двигателей составляет 0,37-800 кВт, высоковольтных двигателей — 350-20 000 кВт. Точность результатов испытаний признана многими клиентами.
+          p
+            ul.img-list
+              li
+                img.lazy(data-src="/img/list1.png" alt="Испытательный центр электродвигателей высокого напряжения")
+                .description Испытательный центр электродвигателей высокого напряжения
+              li
+                img.lazy(data-src="/img/list2.png" alt="ЩУ испытательного центра электродвигателей высокого напряжения")
+                .description ЩУ испытательного центра электродвигателей высокого напряжения
+              li
+                img.lazy(data-src="/img/list3.png" alt="Готовые к сборке роторы электродвигателей высокого напряжения")
+                .description Готовые к сборке роторы электродвигателей высокого напряжения
+              li
+                img.lazy(data-src="/img/list4.png" alt="Готовые к сборке роторы электродвигателей низкого напряжения")
+                .description Готовые к сборке роторы электродвигателей низкого напряжения
+              li
+                img.lazy(data-src="/img/list5.png" alt="Полностью автоматическая линия сборки обмоток статора")
+                .description Полностью автоматическая линия сборки обмоток статора
+              li
+                img.lazy(data-src="/img/list12.jpg" alt="Реактор для вакуумной пропитки изоляции под давлением")
+                .description Реактор для вакуумной пропитки изоляции под давлением
+              li
+                img.lazy(data-src="/img/list7.png" alt="Линия сборки электродвигателей низкого напряжения")
+                .description Линия сборки электродвигателей низкого напряжения 
+              li
+                img.lazy(data-src="/img/list8.png" alt="Полностью автоматическая линия покраски двигателей низкого напряжения")
+                .description Полностью автоматическая линия покраски двигателей низкого напряжения 
+              li
+                img.lazy(data-src="/img/list9.png" alt="Испытательный центр электродвигателей низкого напряжения")
+                .description Испытательный центр электродвигателей низкого напряжения
+              li
+                img.lazy(data-src="/img/list10.png" alt="Готовый к отгрузке электродвигатель низкого напряжения")
+                .description Готовый к отгрузке электродвигатель низкого напряжения
+              li
+                img.lazy(data-src="/img/list11.png" alt="Готовый к сборке ротор синхронного электродвигателя")
+                .description Готовый к сборке ротор синхронного электродвигателя
+              li
+                img.lazy(data-src="/img/list12.png" alt="Испытания синхронного электродвигателя")
+                .description Испытания синхронного электродвигателя
+              li
+                img.lazy(data-src="/img/list13.png" alt="Приемка электродвигателей на заводе заказчиком")
+                .description Приемка электродвигателей на заводе заказчиком
+              li
+                img.lazy(data-src="/img/list14.png" alt="Готовый к отгрузке синхронный электродвигатель")
+                .description Готовый к отгрузке синхронный электродвигатель
+        .title-block
+          .wrapper
+            h2 Видео
+        .wrapper
+          .video-list(uk-lightbox)
+            a.video-block(href="/video/1.mp4") 
+              h3 PLM-система
+            a.video-block(href="/video/2.mp4") 
+              h3 Линия штамповки роторов
+            a.video-block(href="/video/3.mp4") 
+              h3 Линия изготовления обмоток статора
+            a.video-block(href="/video/4.mp4") 
+              h3 Линия обработки металла и производства корпусов
+            a.video-block(href="/video/5.mp4") 
+              h3 Линия сборки и испытания электродвигателей

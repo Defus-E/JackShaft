@@ -1,0 +1,48 @@
+mixin contact(formID, inputIDS, dzID)
+  .contact
+    .wrapper
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      form(class="contact-form" encrypt="multipart/form-data" action="/email" method="POST")
+        .line
+          .title.h1-line Личные данные
+          .input
+            input.uk-input(placeholder="Имя" name="name" aria-label="Имя" autocomplete="off" required)
+          .input
+            input.uk-input(placeholder="Телефон" name="phone" aria-label="Телефон" autocomplete="off" required)
+          .input
+            input.uk-input(placeholder="Email" name="email" aria-label="Email" autocomplete="off" required)
+        .line
+          .block
+            .title Вы
+            .input
+              input(id=inputIDS[0] type="radio" name="you" value="Частное лицо" checked="")
+              label(for=inputIDS[0]) Частное лицо
+              input(id=inputIDS[1] type="radio" name="you" value="Организация")
+              label(for=inputIDS[1]) Организация
+          .block
+            .title Тема  
+            .input
+              input(id=inputIDS[2] type="radio" name="theme" value="Запрос продукции" checked="")
+              label(for=inputIDS[2]) Запрос продукции
+              input(id=inputIDS[3] type="radio" name="theme" value="Сервис/запчасти")
+              label(for=inputIDS[3]) Сервис/запчасти
+              input(id=inputIDS[4] type="radio" name="theme" value="Сотрудничество")
+              label(for=inputIDS[4]) Сотрудничество
+              input(id=inputIDS[5] type="radio" name="theme" value="Другое")
+              label(for=inputIDS[5]) Другое
+        .line
+          .input
+            textarea.uk-textarea(rows="5" name="message" placeholder="Ваше сообщение" aria-label="Сообщение" autocomplete="off" required)
+        .line
+          .input
+            div.dropzone.js-upload.uk-placeholder.uk-text-center.needsclick.dz-clickable(id=dzID)
+              .dz-default.dz-message
+                .uk-text-middle
+                  | Прикрепить файл
+          .input
+            input.uk-checkbox(type="checkbox" name="agree" value="true" aria-label="Я согласен" autocomplete="off" required)
+            a(href="/policy") Я согласен на обработку персональных данных
+          .input
+            button.uk-button.uk-button-primary.send(type="button") Отправить 
+        .preview-container

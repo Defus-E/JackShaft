@@ -1,0 +1,32 @@
+include ../mixins/_sprite
+-var version = '0.1.54'
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title
+      block title
+
+    link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/uikit.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+    link(rel="preload" href="https://cdn.jsdelivr.net/combine/npm/cdncw-jackshaft@" + version + "/css/app.min.css,npm/cdncw-jackshaft@" + version + "/css/main.min.css,npm/cdncw-jackshaft@" + version + "/css/admin.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+    block css
+    noscript
+      link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/uikit.min.css")
+      link(rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/cdncw-jackshaft@" + version + "/css/app.min.css,npm/cdncw-jackshaft@" + version + "/css/main.min.css,npm/cdncw-jackshaft@" + version + "/css/admin.min.css")
+      block noscript
+      
+  body
+    input(type="text" style="display: none" id="version" value=version)
+    include ../components/a.header.pug
+    block main
+    include ../inc/svg
+
+    block javascript
+    script(src="https://cdn.jsdelivr.net/combine/npm/cdncw-jackshaft@" + version + "/js/jquery-3.4.1.min.js")  
+    script(defer src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/js/uikit.min.js")
+    script(defer src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/js/form2js.min.js")
+    script(defer src="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/js/dropzone.min.js")
+    script(defer src="/js/admin.js")

@@ -1,0 +1,57 @@
+extends ../layout/admin
+block title 
+  | Слайдер «#{slider.page}»
+
+block main
+  #board
+    .wrapper
+      .top-page
+        .left 
+          h3 Слайдер «#{slider.page}»
+        .right
+          button.uk-button.uk-button-primary.auto-form(style="margin-right:5px;" data-form="#add") Добавить слайд
+          button.uk-button.uk-button-primary.auto-form(data-form="#edit") Сохранить
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      .slider-list
+        form(id="add" method="POST" action="/backend/sliders/add")
+          input(name="index" value=slider.index style="display: none")
+          .slider
+            .slider-title
+              .uk-margin
+                label.uk-form-label Текст на слайде
+                .uk-form-controls
+                  input.clear-input.uk-input(type="text" name="title" placeholder="" required)
+              .uk-margin
+                label.uk-form-label Ссылка на кнопке
+                .uk-form-controls
+                  input.clear-input.uk-input(type="text" name="link" placeholder="")
+            .uk-margin
+              input.clear-input(type="file" id="selectedFile" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+              label.uk-form-label Изображение слайда
+                .slider-cover
+                  img._image-slide(style="display: none")
+                  button.uk-button.uk-button-text.img-button(onclick="document.getElementById('selectedFile').click();" type="button") Загрузить изображение
+
+        form(id="edit" method="POST" action="/backend/sliders/edit")
+          input(name="index" value=slider.index style="display: none")
+          each slide, indx in slider.slides
+            .slider
+              input(name=`data[${indx}]._id` value=slide._id style="display: none")
+              input.clear-input(type="file" id=slide._id data-act="edit" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+              .slider-title
+                .uk-margin
+                  label.uk-form-label Текст на слайде
+                  .uk-form-controls
+                    input.uk-input(type="text" name=`data[${indx}].title` value=slide.title placeholder="" required)
+                .uk-margin
+                  label.uk-form-label Ссылка на кнопке
+                  .uk-form-controls
+                    input.uk-input(type="text" name=`data[${indx}].link` value=slide.link placeholder="")
+              .uk-margin
+                label.uk-form-label Изображение слайда
+                  .slider-cover(data-id=slide._id style=`background: url('${slide.image}')`)
+              .slider-control(uk-lightbox)
+                button.uk-button.uk-button-text(onclick=`document.getElementById('${slide._id}').click();` type="button") Изменить
+                a.uk-button.uk-button-text(href=slide.image) Посмотреть
+                button.uk-button.uk-button-text.delete(data-id=slide._id data-index=slider.index data-level="2" type="button" data-url="/backend/sliders/delete") Удалить

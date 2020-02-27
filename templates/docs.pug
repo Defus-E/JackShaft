@@ -1,0 +1,31 @@
+extends layout/index
+
+block title
+  | Документы
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css")
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css")
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/style.min.css")
+
+block main
+  #page
+    .wrapper
+      .section.catalogue-section   
+        each cat in cats
+          .title-block
+            .wrapper
+              h2= cat.categorytitle.ru
+          .wrapper 
+            .catalogue
+              each doc in cat.documents
+                .catalogue-item
+                  .catalogue-item__inner
+                    img.cover(src=doc.image alt="text")
+                    .text=doc.title.ru
+                    a.more.uk-button.uk-button-primary(href=doc.document.path download=doc.document.name) Скачать
+

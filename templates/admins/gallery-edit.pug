@@ -1,0 +1,20 @@
+extends ../layout/admin
+block title 
+  | Редактирование альбома
+
+block main
+  #board
+    .wrapper
+      .top-page
+        .left 
+          h3=title.ru 
+        .right
+          button.uk-button.uk-button-primary(uk-toggle="target: #add-photo") Добавить фото
+      .gallery-list
+        each photo in photos
+          .gallery-list-item(style=`background:url('${photo.photo}')` data-description-ru=photo.description.ru data-description-en=photo.description.en data-image=photo.photo data-id=photo._id)
+            .title=photo.description.ru
+            .control
+              button.uk-button.uk-button-text.edit-photo(uk-toggle="target: #edit-photo") Изменить
+              button.uk-button.uk-button-text.delete(data-id=id data-index=photo._id data-level="2" data-url="/backend/gallery/delete-photo") Удалить
+  include ../inc/a.modals.pug

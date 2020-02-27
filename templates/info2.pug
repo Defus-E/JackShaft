@@ -1,0 +1,92 @@
+extends layout/index
+include mixins/contact
+include mixins/slider
+
+block modals
+  include inc/modals
+
+block title 
+  | Печи
+
+block css
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+  link(rel="preload" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+block noscript
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/page.min.css")
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/cdncw-jackshaft@" + version + "/css/catalogue.min.css")
+
+block main
+  #hero
+    +slider(slides)
+  #page
+    .wrapper
+      .text 
+        .title-block
+          .wrapper
+            h3 Jackshaft (Beijing)Technology Co.,Ltd осуществляет:
+        ul
+          li Техническое перевооружение, реконструкцию и ремонт промышленных печей; разработку проекта с нуля (строительство промышленных печей под ключ).
+          li Все виды работ для промышленных нагревательных печей, работающих как на газу, так и на других видах топлива: проектирование, производство, поставка, монтаж, пусконаладочные работы, ввод в эксплуатацию.
+          li Поставку оборудования, подготовку проектной документации, построение АСУТП для промышленных нагревательных печей.
+
+        p Jackshaft (Beijing)Technology Co.,Ltd использует современное горелочное оборудование, оборудование системы газо-воздухоснабжения, современные управляющие комплексы (АСУТП), построенные на базе оборудования ведущих мировых производителей, высокоэффективные огнеупорные материалы.
+        p Все решения предлагаются с использованием современного оборудования, автоматики, что позволяет существенно сэкономить топливо, электроэнергию, увеличить временные межремонтные интервалы, повысить производительность и надёжность производства, а значит и сократить эксплуатационные расходы предприятия.
+        .title-block
+          .wrapper
+            h3 Jackshaft (Beijing)Technology Co.,Ltd в своих технических решениях делает упор на:
+        ul
+          li Максимальное удовлетворение требований и ожиданий Заказчика;
+          li Выработку оптимального технического решения в рамках конкретного проекта, используя комплексный подход, знания и опыт специалистов;
+          li Надёжность, безопасность и экологичность.
+        p Применяемая продукция, современные технологии обеспечивают экологичность, надёжность, безопасность и наилучшую производительность проектируемой промышленной установки (печи), при этом полностью учитывается специфика конкретного производства и отрасли.
+
+    .title-block
+      .wrapper
+        h2 Фотогалерея выпускаемой продукции
+    .wrapper 
+      ul.img-list
+        li
+          img.lazy(data-src="/img/list2_1.jpg" alt="Туннельная печь с выкатным подом")
+          .description Туннельная печь с выкатным подом
+        li
+          img.lazy(data-src="/img/list2_2.jpg" alt="Туннельная печь с выкатным подом")
+          .description Туннельная печь с выкатным подом
+        li
+          img.lazy(data-src="/img/list2_3.jpg" alt="Туннельная печь с роликовым подом")
+          .description Туннельная печь с роликовым подом
+        li
+          img.lazy(data-src="/img/list2_4.jpg" alt="Туннельная печь с роликовым подом")
+          .description Туннельная печь с роликовым подом
+        li
+          img.lazy(data-src="/img/list2_5.jpg" alt="Туннельная печь для термообработки труб")
+          .description Туннельная печь для термообработки труб
+        li
+          img.lazy(data-src="/img/list2_6.jpg" alt="Туннельная печь для термообработки труб")
+          .description Туннельная печь для термообработки труб
+        li
+          img.lazy(data-src="/img/list2_7.jpg" alt="Кольцевая нагревательная печь")
+          .description Кольцевая нагревательная печь
+        li
+          img.lazy(data-src="/img/list2_8.jpg" alt="Шахтная печь")
+          .description Шахтная печь
+
+    .title-block
+      .wrapper
+        h2 Подробное описание печей
+    .wrapper 
+      .catalogue
+        .catalogue-item
+          .catalogue-item__inner
+            img.cover(src="/img/f1.png" alt="text")
+            .text Шахтная печь
+            a.more.uk-button.uk-button-primary(href="/industry/2/catalogue/1") Подробнее
+        .catalogue-item
+          .catalogue-item__inner
+            img.cover(src="/img/f2.jpg" alt="text")
+            .text Туннельная печь
+            a.more.uk-button.uk-button-primary(href="/industry/2/catalogue/2") Подробнее
+        .catalogue-item
+          .catalogue-item__inner
+            img.cover(src="/img/f3.png" alt="text")
+            .text Кольцевая печь
+            a.more.uk-button.uk-button-primary(href="/industry/2/catalogue/3") Подробнее

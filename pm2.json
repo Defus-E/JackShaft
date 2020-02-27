@@ -1,0 +1,13 @@
+{
+  "apps": [{
+    "name": "JackShaft",
+    "exec_mode": "cluster",
+    "instances": "1",
+    "script": "./app.ts",
+    "interpreter": "ts-node",
+    "env": {
+      "PORT": 8085,
+      "NODE_ENV": "production"
+    }
+  }]
+}

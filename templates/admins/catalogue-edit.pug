@@ -1,0 +1,113 @@
+extends ../layout/admin
+block title 
+  = item._id ? 'Измнение элемента каталога' : 'Добавление элемента каталога'
+
+block main
+  #board
+    .wrapper
+      .infoblock.infoblock-error
+      .infoblock.infoblock-succes
+      form.form-catalogue.form-add(id="catalogue-edit" encrypt="multipart/form-data" method="POST" action="/backend/catalogue/edit/")
+        input(name="id" value=item._id style="display:none")
+        .top-page
+          .left  
+            h3 Добавление позиции
+          .right
+            button#save.uk-button.uk-button-primary(type="button")=item._id ? 'Сохранить' : 'Добавить' 
+        .uk-margin
+          label.uk-form-label Название
+          .uk-form-controls
+            input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.name ? item.name.ru : '' name="name.ru" placeholder="" required)
+        .form-block
+          .left
+            input(class=item._id ? '' : 'clear-input' type="file" id="selectedFile" data-act="file" style="display: none;" accept="image/x-png,image/pjpeg,image/jpeg,image/tiff,image/webp")
+            img._image(src=item.image || item.image != "" || !item ? _host + item.image : '/img/nf.jpeg' class=item._id ? '' : 'clear-image' onerror="this.src='/img/nf.jpeg'" alt="Image not found")
+            button.load-img.uk-button.uk-button-primary(onclick="document.getElementById('selectedFile').click();" type="button") Загрузить фото
+          .right
+            -
+              var types = [
+                'Асинхронные двигатели низкого напряжения', 
+                'Асинхронные двигатели высокого напряжения'
+              ];
+
+            .uk-margin
+              label.uk-form-label Тип двигателя
+              select.uk-select(name="type" required)
+                each type, indx in types
+                  option(value=indx selected=indx == +item.type ? true : false)= type
+            .uk-margin
+              label.uk-form-label Категория
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.category ? item.category.ru : '' name="category.ru" placeholder="" required)
+            .uk-margin
+              label.uk-form-label Высота оси вращения
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.rotation_height name="rotation_height" placeholder="")
+            .uk-margin
+              label.uk-form-label Мощность
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.power name="power" placeholder="")
+            .uk-margin
+              label.uk-form-label Мощность и режим работы
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.power_and_mode name="power_and_mode" placeholder="")
+            .uk-margin
+              label.uk-form-label Число полюсов
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.poles name="poles" placeholder="")
+            .uk-margin
+              label.uk-form-label Напряжение
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.voltage name="voltage" placeholder="")
+            .uk-margin
+              label.uk-form-label Номинальная частота
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.rated_frequency name="rated_frequency" placeholder="")
+            .uk-margin
+              label.uk-form-label Диапазон регулирования частоты
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.frequency_control_range name="frequency_control_range" placeholder="")
+            .uk-margin
+              label.uk-form-label Возможные варианты термостойкости
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.possible_options_for_heat_resistance ? item.possible_options_for_heat_resistance.ru : '' name="possible_options_for_heat_resistance.ru" placeholder="")
+            .uk-margin
+              label.uk-form-label Степень защиты
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.degree_of_protection name="degree_of_protection" placeholder="")
+            .uk-margin
+              label.uk-form-label Способ монтажа
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.mounting_method name="mounting_method" placeholder="")
+            .uk-margin
+              label.uk-form-label Способ охлаждения
+              .uk-form-controls
+                input.uk-input(class=item._id ? '' : 'clear-input' type="text" value=item.cooling_method name="cooling_method" placeholder="")
+        .uk-margin
+          label.uk-form-label Описание (поддерживает html теги)
+          .uk-form-controls
+            textarea.uk-textarea(class=item._id ? '' : 'clear-input' rows="10" name="description.ru")=item.description ? item.description['ru'] : ""
+        .uk-margin
+          label.uk-form-label Текст над таблицами
+          .uk-form-controls
+            textarea.uk-textarea(class=item._id ? '' : 'clear-input' rows="10" name="texttables.ru")=item.texttables ? item.texttables['ru'] : ""
+        .uk-margin
+          div.dropzone.js-upload.uk-placeholder.uk-text-center.needsclick.dz-clickable#tableDZ
+            .dz-default.dz-message
+              .uk-text-middle(style="cursor: pointer;")
+                .uk-button.uk-button-default
+                  | Файлы таблиц
+          .preview-container
+            if item.tables
+              each table in item.tables
+                .dz-preview.dz-image-preview(data-path=table.path)
+                  .dz-image
+                    img(data-dz-thumbnail src=table.path alt="Not found")
+                  .dz-details
+                    .dz-size
+                      span(data-dz-size)
+                        stront=table.size + ' MB'
+                    .dz-filename
+                      span(data-dz-name)= table.name
+                  a.dz-remove(href="javascript:undefined;" class="delete-image" data-dz-remove) ×
+                  
